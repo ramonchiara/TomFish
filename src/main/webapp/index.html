@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TomFish</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <h1>Olá, JAX-RS</h1>
+        <ul>
+            <li><a href="webresources/hello">webresources/hello</a></li>
+            <li><a href="webresources/hello/Ana">webresources/hello/Ana</a></li>
+        </ul>
+        <h1>Olá, JAX-RS + JAXB</h1>
+        <form action="webresources/pessoa/xml" method="GET">
+            <fieldset>
+                <legend>XML</legend>
+                <table>
+                    <tr>
+                        <th><label for="nome">Nome: </label></th>
+                        <td><input type="text" id="nome" name="nome"/></td>
+                    </tr>
+                    <tr>
+                        <th><label for="peso">Peso: </label></th>
+                        <td><input type="text" id="peso" name="peso"/></td>
+                    </tr>
+                    <tr>
+                        <th><label for="altura">Altura: </label></th>
+                        <td><input type="text" id="altura" name="altura"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button type="submit">IMC</button>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </form>
+        <form action="webresources/pessoa/json" method="GET">
+            <fieldset>
+                <legend>JSON</legend>
+                <table>
+                    <tr>
+                        <th><label for="nome2">Nome: </label></th>
+                        <td><input type="text" id="nome2" name="nome"/></td>
+                    </tr>
+                    <tr>
+                        <th><label for="peso2">Peso: </label></th>
+                        <td><input type="text" id="peso2" name="peso"/></td>
+                    </tr>
+                    <tr>
+                        <th><label for="altura2">Altura: </label></th>
+                        <td><input type="text" id="altura2" name="altura"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button type="submit">IMC</button>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </form>
+    </body>
+</html>
