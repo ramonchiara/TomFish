@@ -15,7 +15,11 @@ public class Pessoa {
 
     protected Pessoa() {
     }
-    
+
+    public Pessoa(String nome) {
+        this(nome, 0, 0);
+    }
+
     public Pessoa(String nome, double peso, double altura) {
         this.nome = nome;
         this.peso = peso;
