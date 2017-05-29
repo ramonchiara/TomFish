@@ -14,6 +14,8 @@ import javax.ws.rs.core.Response;
 
 public class PessoaCrudClient {
 
+    public static final String URI = "http://localhost:8080/TomFish/webresources/pessoas";
+
     public static void main(String[] args) {
         Scanner console = new Scanner(System.in);
 
@@ -59,7 +61,7 @@ public class PessoaCrudClient {
     public static void createForm() {
         Scanner console = new Scanner(System.in);
         Client client = ClientBuilder.newClient();
-        WebTarget target = client.target("http://localhost:8084/TomFish/webresources/pessoas");
+        WebTarget target = client.target(URI);
 
         System.out.print("Nome: ");
         String nome = console.nextLine();
@@ -89,7 +91,7 @@ public class PessoaCrudClient {
     public static void createJson() {
         Scanner console = new Scanner(System.in);
         Client client = ClientBuilder.newClient();
-        WebTarget target = client.target("http://localhost:8084/TomFish/webresources/pessoas");
+        WebTarget target = client.target(URI);
 
         System.out.print("Nome: ");
         String nome = console.nextLine();
@@ -115,7 +117,7 @@ public class PessoaCrudClient {
 
     public static void findAll() {
         Client client = ClientBuilder.newClient();
-        WebTarget target = client.target("http://localhost:8084/TomFish/webresources/pessoas");
+        WebTarget target = client.target(URI);
 
         Response response = target.request().accept(MediaType.APPLICATION_JSON).get();
         List<Pessoa> pessoas = response.readEntity(new GenericType<List<Pessoa>>() {
@@ -128,7 +130,7 @@ public class PessoaCrudClient {
     public static void findByName() {
         Scanner console = new Scanner(System.in);
         Client client = ClientBuilder.newClient();
-        WebTarget target = client.target("http://localhost:8084/TomFish/webresources/pessoas/{pessoa}");
+        WebTarget target = client.target(URI + "/{pessoa}");
 
         System.out.print("Nome: ");
         String nome = console.nextLine();
@@ -149,7 +151,7 @@ public class PessoaCrudClient {
     public static void update() {
         Scanner console = new Scanner(System.in);
         Client client = ClientBuilder.newClient();
-        WebTarget target = client.target("http://localhost:8084/TomFish/webresources/pessoas/{pessoa}");
+        WebTarget target = client.target(URI + "/{pessoa}");
 
         System.out.print("Nome: ");
         String nome = console.nextLine();
@@ -160,20 +162,37 @@ public class PessoaCrudClient {
 
         Pessoa pessoa = new Pessoa(nome, peso, altura);
         Entity<Pessoa> entity = Entity.entity(pessoa, MediaType.APPLICATION_JSON);
-        Response response = target.request().post(entity);
+        Response response = target.resolveTemplate("pessoa", nome).request().put(entity);
 
         int status = response.getStatus();
         switch (status) {
-            case 201:
-                System.out.println("Pessoa criada com sucesso!");
+            case 204:
+                System.out.println("Pessoa atualizada!");
                 break;
-            case 409:
-                System.out.println("Já existe uma pessoa cadastrada com esse nome!");
+            case 404:
+                System.out.println("Pessoa não encontrada!");
                 break;
         }
     }
 
     public static void remove() {
+        Scanner console = new Scanner(System.in);
+        Client client = ClientBuilder.newClient();
+        WebTarget target = client.target(URI + "/{pessoa}");
+
+        System.out.print("Nome: ");
+        String nome = console.nextLine();
+
+        Response response = target.resolveTemplate("pessoa", nome).request().delete();
+        int status = response.getStatus();
+        switch (status) {
+            case 204:
+                System.out.println("Pessoa removida!");
+                break;
+            case 404:
+                System.out.println("Pessoa não encontrada!");
+                break;
+        }
     }
-    
+
 }
