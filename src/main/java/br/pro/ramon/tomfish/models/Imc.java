@@ -2,13 +2,18 @@ package br.pro.ramon.tomfish.models;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+@XmlRootElement
 @XmlType(propOrder = {"peso", "altura", "valor", "categoria"})
 public class Imc {
 
     private double peso;
     private double altura;
+
+    protected Imc() {
+    }
 
     public Imc(double peso, double altura) {
         this.peso = peso;

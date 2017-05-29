@@ -1,5 +1,6 @@
 package br.pro.ramon.tomfish.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -52,6 +53,7 @@ public class Pessoa {
     }
 
     @XmlElement
+    @JsonIgnore
     public Imc getImc() {
         return new Imc(peso, altura);
     }
