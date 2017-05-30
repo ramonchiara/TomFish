@@ -1,6 +1,6 @@
 package br.pro.ramon.tomfish.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement
 @XmlType(propOrder = {"nome", "peso", "altura", "imc"})
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Pessoa {
 
     private String nome;
@@ -53,7 +54,6 @@ public class Pessoa {
     }
 
     @XmlElement
-    @JsonIgnore
     public Imc getImc() {
         return new Imc(peso, altura);
     }
