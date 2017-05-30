@@ -15,7 +15,7 @@ public class HelloClient {
         String nome = console.nextLine();
 
         Client client = ClientBuilder.newClient();
-        WebTarget target = client.target("http://localhost:8084/TomFish/webresources/hello/{nome}");
+        WebTarget target = client.target("http://localhost:8080/TomFish/webresources/hello/{nome}");
         Response response = target.resolveTemplate("nome", nome).request().get();
         String msg = response.readEntity(String.class);
         System.out.println(msg);

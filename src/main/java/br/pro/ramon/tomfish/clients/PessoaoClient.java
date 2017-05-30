@@ -20,7 +20,7 @@ public class PessoaoClient {
         String altura = console.nextLine();
 
         Client client = ClientBuilder.newClient();
-        WebTarget target = client.target("http://localhost:8084/TomFish/webresources/pessoa/xml");
+        WebTarget target = client.target("http://localhost:8080/TomFish/webresources/pessoa/xml");
         Response response = target
                 .queryParam("nome", nome)
                 .queryParam("peso", peso)
@@ -29,7 +29,7 @@ public class PessoaoClient {
         Pessoa pessoa = response.readEntity(Pessoa.class);
         System.out.println("xml: " + pessoa.getImc().getCategoria());
 
-        target = client.target("http://localhost:8084/TomFish/webresources/pessoa/json");
+        target = client.target("http://localhost:8080/TomFish/webresources/pessoa/json");
         response = target
                 .queryParam("nome", nome)
                 .queryParam("peso", peso)
