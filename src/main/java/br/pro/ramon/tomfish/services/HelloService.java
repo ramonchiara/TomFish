@@ -10,14 +10,14 @@ import javax.ws.rs.core.MediaType;
 public class HelloService {
 
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.TEXT_PLAIN + ";" + MediaType.CHARSET_PARAMETER + "=UTF-8")
     public String hello() {
         return "Olá, mundo!";
     }
 
     @GET
     @Path("/{nome}")
-    @Produces(MediaType.TEXT_HTML)
+    @Produces(MediaType.TEXT_HTML + ";" + MediaType.CHARSET_PARAMETER + "=UTF-8")
     public String hello(@PathParam("nome") String nome) {
         return String.format("Olá, <strong>%s</strong>!", nome);
     }
